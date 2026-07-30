@@ -1,0 +1,101 @@
+{
+  "common": {
+    "appName": "Patati",
+    "tagline": "Habla. Aprende. Conoce.",
+    "save": "Guardar",
+    "cancel": "Cancelar",
+    "continue": "Continuar",
+    "back": "Atrás",
+    "loading": "Cargando…",
+    "error": "Ha ocurrido un error",
+    "retry": "Reintentar",
+    "delete": "Eliminar",
+    "edit": "Editar",
+    "close": "Cerrar",
+    "confirm": "Confirmar",
+    "brussels": "Bruselas"
+  },
+  "auth": {
+    "loginTitle": "Bienvenido de nuevo",
+    "signupTitle": "Crea tu cuenta",
+    "email": "Correo electrónico",
+    "password": "Contraseña",
+    "confirmPassword": "Confirma tu contraseña",
+    "login": "Iniciar sesión",
+    "signup": "Registrarse",
+    "noAccount": "¿Aún no tienes cuenta?",
+    "hasAccount": "¿Ya tienes cuenta?",
+    "createOne": "Crea una",
+    "signInInstead": "Inicia sesión",
+    "logout": "Cerrar sesión",
+    "passwordsDontMatch": "Las contraseñas no coinciden",
+    "genericError": "No se pudo continuar, revisa tus datos",
+    "forgotPassword": "¿Olvidaste tu contraseña?",
+    "checkEmail": "Revisa tu correo para confirmar tu cuenta."
+  },
+  "onboarding": {
+    "welcomeTitle": "Bienvenido a Patati",
+    "welcomeSubtitle": "La app que te ayuda a conocer gente tomando un café para practicar idiomas en Bruselas.",
+    "getStarted": "Empezar",
+    "nameLabel": "Tu nombre",
+    "namePlaceholder": "¿Cómo te llamamos?",
+    "birthdateLabel": "Fecha de nacimiento",
+    "bioLabel": "Una frase para presentarte",
+    "bioPlaceholder": "Amante de la comida italiana, siempre listo para un café...",
+    "citySpeaks": "en Bruselas",
+    "speaksTitle": "¿Qué idiomas hablas con fluidez?",
+    "speaksSubtitle": "Elige todos los idiomas que dominas.",
+    "learnsTitle": "¿Qué idiomas quieres aprender?",
+    "learnsSubtitle": "Te pondremos en contacto con personas que los hablan.",
+    "photoTitle": "Añade una foto",
+    "photoSubtitle": "Una cara siempre da más confianza que un perfil vacío.",
+    "addPhoto": "Añadir foto",
+    "minOneLanguage": "Elige al menos un idioma",
+    "finish": "Terminar mi perfil"
+  },
+  "profile": {
+    "title": "Mi perfil",
+    "editTitle": "Editar mi perfil",
+    "speaks": "Hablo",
+    "learns": "Estoy aprendiendo",
+    "editProfile": "Editar perfil",
+    "settings": "Ajustes",
+    "noBio": "Todavía no hay descripción."
+  },
+  "discover": {
+    "title": "Descubrir",
+    "subtitle": "Personas cuyos idiomas encajan con los tuyos, cerca de Bruselas.",
+    "proposeMatch": "Proponer un match",
+    "matchProposed": "¡Match propuesto!",
+    "noProfiles": "Aún no hay perfiles compatibles",
+    "noProfilesSubtitle": "Vuelve más tarde, o añade más idiomas que quieras aprender.",
+    "speaksLabel": "Habla",
+    "learnsLabel": "Aprendiendo",
+    "commonLanguage": "Podéis practicar: {{language}}"
+  },
+  "matches": {
+    "title": "Mis matches",
+    "noMatches": "Aún no hay matches",
+    "noMatchesSubtitle": "Ve a Descubrir para proponer tu primer match!",
+    "pending": "Pendiente",
+    "matchedOn": "Match el {{date}}",
+    "startChat": "Enviar un mensaje",
+    "newMatch": "¡Nuevo match con {{name}}!",
+    "suggestMeetup": "Idea para quedar: un café en Bruselas ☕"
+  },
+  "chat": {
+    "placeholder": "Escribe un mensaje…",
+    "send": "Enviar",
+    "empty": "¡Saluda y propón un café para practicar juntos!"
+  },
+  "settings": {
+    "title": "Ajustes",
+    "language": "Idioma de la app",
+    "account": "Cuenta",
+    "editProfile": "Editar mi perfil",
+    "logout": "Cerrar sesión",
+    "deleteAccount": "Eliminar mi cuenta",
+    "about": "Acerca de",
+    "version": "Versión"
+  }
+}

@@ -1,0 +1,101 @@
+{
+  "common": {
+    "appName": "Patati",
+    "tagline": "Speak. Learn. Meet.",
+    "save": "Save",
+    "cancel": "Cancel",
+    "continue": "Continue",
+    "back": "Back",
+    "loading": "Loading…",
+    "error": "Something went wrong",
+    "retry": "Retry",
+    "delete": "Delete",
+    "edit": "Edit",
+    "close": "Close",
+    "confirm": "Confirm",
+    "brussels": "Brussels"
+  },
+  "auth": {
+    "loginTitle": "Welcome back",
+    "signupTitle": "Create your account",
+    "email": "Email",
+    "password": "Password",
+    "confirmPassword": "Confirm your password",
+    "login": "Log in",
+    "signup": "Sign up",
+    "noAccount": "No account yet?",
+    "hasAccount": "Already have an account?",
+    "createOne": "Create one",
+    "signInInstead": "Log in instead",
+    "logout": "Log out",
+    "passwordsDontMatch": "Passwords don't match",
+    "genericError": "Couldn't continue, please check your credentials",
+    "forgotPassword": "Forgot password?",
+    "checkEmail": "Check your inbox to confirm your account."
+  },
+  "onboarding": {
+    "welcomeTitle": "Welcome to Patati",
+    "welcomeSubtitle": "The app that gets you meeting people over coffee to practice languages in Brussels.",
+    "getStarted": "Get started",
+    "nameLabel": "Your first name",
+    "namePlaceholder": "What should we call you?",
+    "birthdateLabel": "Date of birth",
+    "bioLabel": "A line to introduce yourself",
+    "bioPlaceholder": "Italian food lover, always up for a coffee...",
+    "citySpeaks": "in Brussels",
+    "speaksTitle": "Which languages do you speak fluently?",
+    "speaksSubtitle": "Pick all the languages you're comfortable in.",
+    "learnsTitle": "Which languages do you want to learn?",
+    "learnsSubtitle": "We'll match you with people who speak them.",
+    "photoTitle": "Add a photo",
+    "photoSubtitle": "A face always feels more trustworthy than an empty profile.",
+    "addPhoto": "Add a photo",
+    "minOneLanguage": "Pick at least one language",
+    "finish": "Finish my profile"
+  },
+  "profile": {
+    "title": "My profile",
+    "editTitle": "Edit my profile",
+    "speaks": "I speak",
+    "learns": "I'm learning",
+    "editProfile": "Edit profile",
+    "settings": "Settings",
+    "noBio": "No description yet."
+  },
+  "discover": {
+    "title": "Discover",
+    "subtitle": "People whose languages match yours, around Brussels.",
+    "proposeMatch": "Propose a match",
+    "matchProposed": "Match proposed!",
+    "noProfiles": "No compatible people yet",
+    "noProfilesSubtitle": "Check back later, or add more languages you want to learn.",
+    "speaksLabel": "Speaks",
+    "learnsLabel": "Learning",
+    "commonLanguage": "You can practice: {{language}}"
+  },
+  "matches": {
+    "title": "My matches",
+    "noMatches": "No matches yet",
+    "noMatchesSubtitle": "Head to Discover to propose your first match!",
+    "pending": "Pending",
+    "matchedOn": "Matched on {{date}}",
+    "startChat": "Send a message",
+    "newMatch": "New match with {{name}}!",
+    "suggestMeetup": "Meetup idea: a coffee in Brussels ☕"
+  },
+  "chat": {
+    "placeholder": "Write a message…",
+    "send": "Send",
+    "empty": "Say hi and suggest a coffee to practice together!"
+  },
+  "settings": {
+    "title": "Settings",
+    "language": "App language",
+    "account": "Account",
+    "editProfile": "Edit my profile",
+    "logout": "Log out",
+    "deleteAccount": "Delete my account",
+    "about": "About",
+    "version": "Version"
+  }
+}

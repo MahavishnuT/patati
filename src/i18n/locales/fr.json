@@ -1,0 +1,101 @@
+{
+  "common": {
+    "appName": "Patati",
+    "tagline": "Parle. Apprends. Rencontre.",
+    "save": "Enregistrer",
+    "cancel": "Annuler",
+    "continue": "Continuer",
+    "back": "Retour",
+    "loading": "Chargement…",
+    "error": "Une erreur est survenue",
+    "retry": "Réessayer",
+    "delete": "Supprimer",
+    "edit": "Modifier",
+    "close": "Fermer",
+    "confirm": "Confirmer",
+    "brussels": "Bruxelles"
+  },
+  "auth": {
+    "loginTitle": "Content de te revoir",
+    "signupTitle": "Crée ton compte",
+    "email": "Email",
+    "password": "Mot de passe",
+    "confirmPassword": "Confirme ton mot de passe",
+    "login": "Se connecter",
+    "signup": "S'inscrire",
+    "noAccount": "Pas encore de compte ?",
+    "hasAccount": "Déjà un compte ?",
+    "createOne": "Crée-en un",
+    "signInInstead": "Connecte-toi",
+    "logout": "Se déconnecter",
+    "passwordsDontMatch": "Les mots de passe ne correspondent pas",
+    "genericError": "Impossible de continuer, vérifie tes identifiants",
+    "forgotPassword": "Mot de passe oublié ?",
+    "checkEmail": "Vérifie ta boîte mail pour confirmer ton compte."
+  },
+  "onboarding": {
+    "welcomeTitle": "Bienvenue à Patati",
+    "welcomeSubtitle": "L'appli qui te fait rencontrer, autour d'un café, des gens pour pratiquer les langues à Bruxelles.",
+    "getStarted": "C'est parti",
+    "nameLabel": "Ton prénom",
+    "namePlaceholder": "Comment on t'appelle ?",
+    "birthdateLabel": "Date de naissance",
+    "bioLabel": "Une phrase pour te présenter",
+    "bioPlaceholder": "Passionné·e de cuisine italienne, toujours partant·e pour un café...",
+    "citySpeaks": "à Bruxelles",
+    "speaksTitle": "Quelles langues parles-tu couramment ?",
+    "speaksSubtitle": "Choisis toutes les langues que tu maîtrises.",
+    "learnsTitle": "Quelles langues veux-tu apprendre ?",
+    "learnsSubtitle": "On te mettra en relation avec des personnes qui les parlent.",
+    "photoTitle": "Ajoute une photo",
+    "photoSubtitle": "Un visage rassure toujours plus qu'un profil vide.",
+    "addPhoto": "Ajouter une photo",
+    "minOneLanguage": "Choisis au moins une langue",
+    "finish": "Terminer mon profil"
+  },
+  "profile": {
+    "title": "Mon profil",
+    "editTitle": "Modifier mon profil",
+    "speaks": "Je parle",
+    "learns": "J'apprends",
+    "editProfile": "Modifier le profil",
+    "settings": "Paramètres",
+    "noBio": "Aucune description pour l'instant."
+  },
+  "discover": {
+    "title": "Découvrir",
+    "subtitle": "Des personnes compatibles avec tes langues, près de Bruxelles.",
+    "proposeMatch": "Proposer un match",
+    "matchProposed": "Match proposé !",
+    "noProfiles": "Personne de compatible pour l'instant",
+    "noProfilesSubtitle": "Reviens plus tard, ou ajoute d'autres langues à apprendre.",
+    "speaksLabel": "Parle",
+    "learnsLabel": "Apprend",
+    "commonLanguage": "Vous pouvez pratiquer : {{language}}"
+  },
+  "matches": {
+    "title": "Mes matches",
+    "noMatches": "Pas encore de match",
+    "noMatchesSubtitle": "Va dans Découvrir pour proposer ton premier match !",
+    "pending": "En attente",
+    "matchedOn": "Match le {{date}}",
+    "startChat": "Envoyer un message",
+    "newMatch": "Nouveau match avec {{name}} !",
+    "suggestMeetup": "Idée pour se rencontrer : un café à Bruxelles ☕"
+  },
+  "chat": {
+    "placeholder": "Écris un message…",
+    "send": "Envoyer",
+    "empty": "Dites bonjour et proposez un café pour pratiquer ensemble !"
+  },
+  "settings": {
+    "title": "Paramètres",
+    "language": "Langue de l'application",
+    "account": "Compte",
+    "editProfile": "Modifier mon profil",
+    "logout": "Se déconnecter",
+    "deleteAccount": "Supprimer mon compte",
+    "about": "À propos",
+    "version": "Version"
+  }
+}

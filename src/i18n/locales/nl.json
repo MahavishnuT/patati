@@ -1,0 +1,101 @@
+{
+  "common": {
+    "appName": "Patati",
+    "tagline": "Praat. Leer. Ontmoet.",
+    "save": "Opslaan",
+    "cancel": "Annuleren",
+    "continue": "Doorgaan",
+    "back": "Terug",
+    "loading": "Laden…",
+    "error": "Er is iets misgegaan",
+    "retry": "Opnieuw proberen",
+    "delete": "Verwijderen",
+    "edit": "Bewerken",
+    "close": "Sluiten",
+    "confirm": "Bevestigen",
+    "brussels": "Brussel"
+  },
+  "auth": {
+    "loginTitle": "Welkom terug",
+    "signupTitle": "Maak je account aan",
+    "email": "E-mail",
+    "password": "Wachtwoord",
+    "confirmPassword": "Bevestig je wachtwoord",
+    "login": "Inloggen",
+    "signup": "Registreren",
+    "noAccount": "Nog geen account?",
+    "hasAccount": "Al een account?",
+    "createOne": "Maak er een aan",
+    "signInInstead": "Log in plaats daarvan in",
+    "logout": "Uitloggen",
+    "passwordsDontMatch": "Wachtwoorden komen niet overeen",
+    "genericError": "Kon niet doorgaan, controleer je gegevens",
+    "forgotPassword": "Wachtwoord vergeten?",
+    "checkEmail": "Controleer je mailbox om je account te bevestigen."
+  },
+  "onboarding": {
+    "welcomeTitle": "Welkom bij Patati",
+    "welcomeSubtitle": "De app waarmee je mensen ontmoet over een koffie om talen te oefenen in Brussel.",
+    "getStarted": "Aan de slag",
+    "nameLabel": "Je voornaam",
+    "namePlaceholder": "Hoe mogen we je noemen?",
+    "birthdateLabel": "Geboortedatum",
+    "bioLabel": "Een zin om jezelf voor te stellen",
+    "bioPlaceholder": "Fan van Italiaans eten, altijd in voor een koffie...",
+    "citySpeaks": "in Brussel",
+    "speaksTitle": "Welke talen spreek je vloeiend?",
+    "speaksSubtitle": "Kies alle talen waar je je comfortabel bij voelt.",
+    "learnsTitle": "Welke talen wil je leren?",
+    "learnsSubtitle": "We koppelen je aan mensen die deze talen spreken.",
+    "photoTitle": "Voeg een foto toe",
+    "photoSubtitle": "Een gezicht wekt altijd meer vertrouwen dan een leeg profiel.",
+    "addPhoto": "Foto toevoegen",
+    "minOneLanguage": "Kies minstens één taal",
+    "finish": "Profiel afronden"
+  },
+  "profile": {
+    "title": "Mijn profiel",
+    "editTitle": "Mijn profiel bewerken",
+    "speaks": "Ik spreek",
+    "learns": "Ik leer",
+    "editProfile": "Profiel bewerken",
+    "settings": "Instellingen",
+    "noBio": "Nog geen beschrijving."
+  },
+  "discover": {
+    "title": "Ontdekken",
+    "subtitle": "Mensen wiens talen bij de jouwe passen, rond Brussel.",
+    "proposeMatch": "Match voorstellen",
+    "matchProposed": "Match voorgesteld!",
+    "noProfiles": "Nog geen compatibele profielen",
+    "noProfilesSubtitle": "Kom later terug, of voeg meer talen toe die je wilt leren.",
+    "speaksLabel": "Spreekt",
+    "learnsLabel": "Leert",
+    "commonLanguage": "Jullie kunnen oefenen: {{language}}"
+  },
+  "matches": {
+    "title": "Mijn matches",
+    "noMatches": "Nog geen matches",
+    "noMatchesSubtitle": "Ga naar Ontdekken om je eerste match voor te stellen!",
+    "pending": "In afwachting",
+    "matchedOn": "Match op {{date}}",
+    "startChat": "Stuur een bericht",
+    "newMatch": "Nieuwe match met {{name}}!",
+    "suggestMeetup": "Ideetje: een koffie in Brussel ☕"
+  },
+  "chat": {
+    "placeholder": "Schrijf een bericht…",
+    "send": "Versturen",
+    "empty": "Zeg hallo en stel een koffie voor om samen te oefenen!"
+  },
+  "settings": {
+    "title": "Instellingen",
+    "language": "Taal van de app",
+    "account": "Account",
+    "editProfile": "Mijn profiel bewerken",
+    "logout": "Uitloggen",
+    "deleteAccount": "Mijn account verwijderen",
+    "about": "Over",
+    "version": "Versie"
+  }
+}
