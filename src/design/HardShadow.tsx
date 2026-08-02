@@ -36,8 +36,8 @@ export function HardShadow({
           position: 'absolute',
           top: offset,
           left: offset,
-          right: -0,
-          bottom: -0,
+          right: -4,
+          bottom: -4,
           backgroundColor: shadowColor,
           borderRadius: radius,
         }}

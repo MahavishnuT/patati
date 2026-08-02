@@ -9,6 +9,7 @@ import { colors, spacing, borders } from '@/design/tokens';
 import { useAuth } from '@/lib/auth';
 import { getMyMatches, getMessages, sendMessage, subscribeToMessages } from '@/lib/data';
 import type { Message, MatchWithProfile } from '@/types/models';
+import { HardShadow } from '@/design/HardShadow';
 
 export default function ChatScreen() {
   const { matchId } = useLocalSearchParams<{ matchId: string }>();
@@ -85,34 +86,30 @@ export default function ChatScreen() {
           renderItem={({ item }) => {
             const isMine = item.sender_id === session?.user.id;
             return (
-              <View
-                style={{
-                  alignSelf: isMine ? 'flex-end' : 'flex-start',
-                  maxWidth: '80%',
-                  backgroundColor: isMine ? colors.blue : colors.white,
-                  borderWidth: borders.base,
-                  borderColor: colors.ink,
-                  borderRadius: 10,
-                  paddingVertical: spacing.xs,
-                  paddingHorizontal: spacing.sm,
-                }}
-              >
-                <Text variant="body" style={{ color: isMine ? colors.white : colors.ink }}>
-                  {item.content}
-                </Text>
-              </View>
+              <HardShadow backgroundColor={isMine ? colors.blue : colors.white} borderColor={colors.ink} borderWidth={borders.base} radius={8} offset={4} style={{ alignSelf: isMine ? 'flex-end' : 'flex-start', maxWidth: '80%', marginBottom: spacing.xxs }}>   
+                <View
+                  style={{
+                    paddingVertical: spacing.xs,
+                    paddingHorizontal: spacing.sm,
+                  }}
+                >
+                  <Text variant="body" style={{ color: isMine ? colors.white : colors.ink }}>
+                    {item.content}
+                  </Text>
+                </View>
+              </HardShadow>
             );
           }}
         />
 
-        <View style={{ flexDirection: 'row', alignItems: 'flex-end', gap: spacing.xs, padding: spacing.sm }}>
+        <View style={{ flexDirection: 'row', alignItems: 'center', gap: spacing.xs, padding: spacing.sm }}>
           <View style={{ flex: 1 }}>
             <TextField
               placeholder={t('chat.placeholder')}
               value={draft}
               onChangeText={setDraft}
               onSubmitEditing={onSend}
-              style={{ marginBottom: 0 }}
+              containerStyle={{ marginBottom: 0 }}
             />
           </View>
           <Pressable
@@ -123,8 +120,8 @@ export default function ChatScreen() {
               backgroundColor: colors.green,
               borderWidth: borders.base,
               borderColor: colors.ink,
-              borderRadius: 8,
-              padding: spacing.xs + 2,
+              borderRadius: 4,
+              padding: spacing.xs,
             }}
           >
             <Ionicons name="send" size={20} color={colors.ink} />

@@ -1,16 +1,17 @@
 import React from 'react';
-import { TextInput, View, TextInputProps } from 'react-native';
+import { TextInput, View, TextInputProps, ViewStyle, StyleProp } from 'react-native';
 import { colors, spacing, borders, radii, fontFamily, fontSize } from '@/design/tokens';
 import { Text } from './Text';
 
 type Props = TextInputProps & {
   label?: string;
   error?: string;
+  containerStyle?: StyleProp<ViewStyle>;
 };
 
-export function TextField({ label, error, style, ...rest }: Props) {
+export function TextField({ label, error, style, containerStyle, ...rest }: Props) {
   return (
-    <View style={{ marginBottom: spacing.sm }}>
+    <View style={[{ marginBottom: spacing.sm }, containerStyle]}>
       {label && (
         <Text variant="caption" style={{ marginBottom: spacing.xxs, fontFamily: fontFamily.bodyBold, color: colors.ink }}>
           {label}
