@@ -75,7 +75,7 @@ export function Button({ label, tone = 'ink', fullWidth, loading, size = 'md', s
         {loading && (
           <ActivityIndicator
             color={toneText[tone]}
-            style={{ position: 'absolute', alignSelf: 'center', top: padV - 2 }}
+            style={{ position: 'absolute', top: 0, bottom: 0, left: 0, right: 0 }}
           />
         )}
       </HardShadow>

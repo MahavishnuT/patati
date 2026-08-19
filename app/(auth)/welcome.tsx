@@ -33,18 +33,13 @@ export default function Welcome() {
           <Text variant="display" style={{ marginBottom: spacing.sm }}>
             {t('onboarding.welcomeTitle')}
           </Text>
-          <Text variant="body" style={{ color: colors.grey600 }}>
-            {t('onboarding.welcomeSubtitle')}
-          </Text>
         </View>
 
         <HardShadow backgroundColor={colors.yellow} offset={8}>
           <View style={{ padding: spacing.lg, flexDirection: 'row', flexWrap: 'wrap', gap: spacing.xs }}>
-            {['🗣️', '☕', '🤝', '🇫🇷', '🇳🇱', '🇬🇧', '🇪🇸', '🇮🇹'].map((emoji) => (
-              <Text key={emoji} style={{ fontSize: 28 }}>
-                {emoji}
-              </Text>
-            ))}
+           <Text variant="body" style={{ color: colors.ink, fontFamily: 'SpaceGrotesk_400Regular' }}>
+            {t('onboarding.welcomeSubtitle')}
+          </Text>
           </View>
         </HardShadow>
 

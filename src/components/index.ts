@@ -7,3 +7,4 @@ export { Avatar } from './Avatar';
 export { TopBar } from './TopBar';
 export { EmptyState } from './EmptyState';
 export { ScreenContainer } from './ScreenContainer';
+export { AnimatedSplash } from './AnimatedSplash';
