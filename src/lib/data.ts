@@ -92,14 +92,31 @@ export function subscribeToMessages(matchId: string, onInsert: (message: Message
   };
 }
 
-export async function uploadAvatar(userId: string, uri: string): Promise<string> {
+const EXT_BY_MIME: Record<string, string> = {
+  'image/jpeg': 'jpg',
+  'image/jpg': 'jpg',
+  'image/png': 'png',
+  'image/webp': 'webp',
+  'image/heic': 'heic',
+  'image/heif': 'heif',
+  'image/gif': 'gif',
+};
+
+export async function uploadAvatar(userId: string, uri: string, mimeType?: string | null): Promise<string> {
   const response = await fetch(uri);
-  const arrayBuffer = await response.arrayBuffer();
-  const fileExt = uri.split('.').pop() ?? 'jpg';
+  const blob = await response.blob();
+
+  // Sur le web, l'URI est un `blob:...` sans extension exploitable : on se base
+  // sur le `mimeType` fourni par expo-image-picker plutôt que sur l'URI.
+  const contentType = mimeType && mimeType.startsWith('image/') ? mimeType : blob.type || 'image/jpeg';
+  const fileExt = EXT_BY_MIME[contentType] ?? 'jpg';
   const path = `${userId}/avatar.${fileExt}`;
 
-  const { error } = await supabase.storage.from('avatars').upload(path, arrayBuffer, {
-    contentType: `image/${fileExt}`,
+  // On envoie un `Blob` (et non un `ArrayBuffer`) : un `ArrayBuffer` brut
+  // provoque un `net::ERR_HTTP2_PROTOCOL_ERROR` côté fetch web/RN vers
+  // l'API de stockage Supabase (en-têtes de requête mal formés).
+  const { error } = await supabase.storage.from('avatars').upload(path, blob, {
+    contentType,
     upsert: true,
   });
   if (error) throw error;

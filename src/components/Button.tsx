@@ -33,10 +33,6 @@ type Props = Omit<PressableProps, 'style'> & {
   style?: StyleProp<ViewStyle>;
 };
 
-/**
- * Bouton néo-brutaliste : bloc plat + ombre dure décalée. L'ombre "s'aplatit"
- * (se colle au bouton) quand on appuie, pour donner un vrai effet tactile.
- */
 export function Button({ label, tone = 'ink', fullWidth, loading, size = 'md', style, disabled, ...rest }: Props) {
   const [pressed, setPressed] = React.useState(false);
   const padV = size === 'sm' ? spacing.xs : spacing.sm + 2;

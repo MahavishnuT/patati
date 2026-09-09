@@ -55,26 +55,25 @@ export default function ChatScreen() {
 
   return (
     <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : undefined} style={{ flex: 1, backgroundColor: colors.bg }}>
-      <SafeAreaView style={{ flex: 1 }} edges={['top', 'bottom']}>
-        <View
-          style={{
-            flexDirection: 'row',
-            alignItems: 'center',
-            gap: spacing.sm,
-            padding: spacing.sm,
-            backgroundColor: colors.orange,
-            borderBottomWidth: borders.thick,
-            borderBottomColor: colors.ink,
-          }}
-        >
-          <Pressable onPress={() => router.back()} hitSlop={12} accessibilityRole="button" accessibilityLabel={t('common.back')}>
-            <Ionicons name="arrow-back" size={24} color={colors.ink} />
-          </Pressable>
-          {match && <Avatar uri={match.otherProfile.photo_url} name={match.otherProfile.first_name} size={40} />}
-          <Text variant="subtitle" numberOfLines={1}>
-            {match?.otherProfile.first_name ?? ''}
-          </Text>
-        </View>
+      <SafeAreaView style={{ flex: 1 }} edges={['bottom']}>
+        <SafeAreaView edges={['top']} style={{ backgroundColor: colors.orange, borderBottomWidth: borders.thick, borderBottomColor: colors.ink }}>
+          <View
+            style={{
+              flexDirection: 'row',
+              alignItems: 'center',
+              gap: spacing.sm,
+              padding: spacing.sm,
+            }}
+          >
+            <Pressable onPress={() => router.back()} hitSlop={12} accessibilityRole="button" accessibilityLabel={t('common.back')}>
+              <Ionicons name="arrow-back" size={24} color={colors.ink} />
+            </Pressable>
+            {match && <Avatar uri={match.otherProfile.photo_url} name={match.otherProfile.first_name} size={40} />}
+            <Text variant="subtitle" numberOfLines={1}>
+              {match?.otherProfile.first_name ?? ''}
+            </Text>
+          </View>
+        </SafeAreaView>
 
         <FlatList
           ref={listRef}

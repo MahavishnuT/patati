@@ -20,6 +20,7 @@ export default function EditProfile() {
   const [speaks, setSpeaks] = useState<LanguageCode[]>((profile?.languages_spoken as LanguageCode[]) ?? []);
   const [learns, setLearns] = useState<LanguageCode[]>((profile?.languages_learning as LanguageCode[]) ?? []);
   const [photoUri, setPhotoUri] = useState<string | null>(profile?.photo_url ?? null);
+  const [photoMimeType, setPhotoMimeType] = useState<string | null>(null);
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -31,7 +32,10 @@ export default function EditProfile() {
     const permission = await ImagePicker.requestMediaLibraryPermissionsAsync();
     if (!permission.granted) return;
     const result = await ImagePicker.launchImageLibraryAsync({ mediaTypes: ['images'], allowsEditing: true, aspect: [1, 1], quality: 0.8 });
-    if (!result.canceled && result.assets[0]) setPhotoUri(result.assets[0].uri);
+    if (!result.canceled && result.assets[0]) {
+      setPhotoUri(result.assets[0].uri);
+      setPhotoMimeType(result.assets[0].mimeType ?? null);
+    }
   };
 
   const onSave = async () => {
@@ -41,7 +45,7 @@ export default function EditProfile() {
     try {
       let photoUrl = profile?.photo_url ?? null;
       if (photoUri && photoUri !== profile?.photo_url) {
-        photoUrl = await uploadAvatar(session.user.id, photoUri);
+        photoUrl = await uploadAvatar(session.user.id, photoUri, photoMimeType);
       }
       await upsertProfile({
         id: session.user.id,

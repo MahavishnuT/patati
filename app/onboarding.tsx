@@ -26,6 +26,7 @@ export default function Onboarding() {
   const [speaks, setSpeaks] = useState<LanguageCode[]>([]);
   const [learns, setLearns] = useState<LanguageCode[]>([]);
   const [photoUri, setPhotoUri] = useState<string | null>(null);
+  const [photoMimeType, setPhotoMimeType] = useState<string | null>(null);
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -44,6 +45,7 @@ export default function Onboarding() {
     });
     if (!result.canceled && result.assets[0]) {
       setPhotoUri(result.assets[0].uri);
+      setPhotoMimeType(result.assets[0].mimeType ?? null);
     }
   };
 
@@ -75,7 +77,7 @@ export default function Onboarding() {
     try {
       let photoUrl: string | null = null;
       if (photoUri) {
-        photoUrl = await uploadAvatar(session.user.id, photoUri);
+        photoUrl = await uploadAvatar(session.user.id, photoUri, photoMimeType);
       }
       await upsertProfile({
         id: session.user.id,
