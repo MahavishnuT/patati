@@ -1,3 +1,5 @@
+import { Platform } from 'react-native';
+import { File } from 'expo-file-system';
 import { supabase } from './supabase';
 import type { Profile, MatchWithProfile, Message } from '@/types/models';
 import type { LanguageCode } from './languages';
@@ -103,19 +105,31 @@ const EXT_BY_MIME: Record<string, string> = {
 };
 
 export async function uploadAvatar(userId: string, uri: string, mimeType?: string | null): Promise<string> {
-  const response = await fetch(uri);
-  const blob = await response.blob();
-
   // Sur le web, l'URI est un `blob:...` sans extension exploitable : on se base
   // sur le `mimeType` fourni par expo-image-picker plutôt que sur l'URI.
-  const contentType = mimeType && mimeType.startsWith('image/') ? mimeType : blob.type || 'image/jpeg';
+  let contentType = mimeType && mimeType.startsWith('image/') ? mimeType : 'image/jpeg';
+
+  // Le body envoyé à Supabase Storage doit être un `ArrayBuffer` sur natif
+  // (iOS/Android) et un `Blob` sur web :
+  // - Un `ArrayBuffer` brut provoque un `net::ERR_HTTP2_PROTOCOL_ERROR` sur web.
+  // - `Response.blob()` sur natif passe par le "blob store" RN (lent, et source
+  //   d'échecs d'upload observés sur Android) : on lit le fichier directement
+  //   via `expo-file-system`, qui fournit un vrai `ArrayBuffer`.
+  let body: Blob | ArrayBuffer;
+  if (Platform.OS === 'web') {
+    const response = await fetch(uri);
+    const blob = await response.blob();
+    contentType = mimeType && mimeType.startsWith('image/') ? mimeType : blob.type || contentType;
+    body = blob;
+  } else {
+    const file = new File(uri);
+    body = await file.arrayBuffer();
+  }
+
   const fileExt = EXT_BY_MIME[contentType] ?? 'jpg';
   const path = `${userId}/avatar.${fileExt}`;
 
-  // On envoie un `Blob` (et non un `ArrayBuffer`) : un `ArrayBuffer` brut
-  // provoque un `net::ERR_HTTP2_PROTOCOL_ERROR` côté fetch web/RN vers
-  // l'API de stockage Supabase (en-têtes de requête mal formés).
-  const { error } = await supabase.storage.from('avatars').upload(path, blob, {
+  const { error } = await supabase.storage.from('avatars').upload(path, body, {
     contentType,
     upsert: true,
   });
