@@ -27,7 +27,7 @@ export default function Welcome() {
             }}
           >
             <Text variant="caption" style={{ color: colors.white, fontFamily: 'SpaceGrotesk_700Bold' }}>
-              {t('common.brussels').toUpperCase()} 🇧🇪
+              {t('common.brussels').toUpperCase()} 📍
             </Text>
           </View>
           <Text variant="display" style={{ marginBottom: spacing.sm }}>

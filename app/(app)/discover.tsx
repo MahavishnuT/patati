@@ -66,7 +66,7 @@ export default function Discover() {
         refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
         ListEmptyComponent={
           !loading ? (
-            <EmptyState icon="cafe-outline" title={t('discover.noProfiles')} subtitle={t('discover.noProfilesSubtitle')} />
+            <EmptyState icon="cafe-outline" title={t('discover.noProfiles')} subtitle={t('discover.noProfilesSubtitle')} tone={colors.yellow} />
           ) : null
         }
         renderItem={({ item }) => {

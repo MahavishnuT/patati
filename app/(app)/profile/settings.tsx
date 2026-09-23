@@ -10,11 +10,11 @@ import { setAppLanguage, SUPPORTED_LANGUAGES } from '@/i18n';
 import i18n from '@/i18n';
 
 const LANGUAGE_LABELS: Record<string, string> = {
-  fr: '🇫🇷 Français',
-  en: '🇬🇧 English',
-  nl: '🇳🇱 Nederlands',
-  es: '🇪🇸 Español',
-  it: '🇮🇹 Italiano',
+  fr: 'Français',
+  en: 'English',
+  nl: 'Nederlands',
+  es: 'Español',
+  it: 'Italiano',
 };
 
 export default function Settings() {

@@ -11,6 +11,8 @@ import { getMyMatches, getMessages, sendMessage, subscribeToMessages } from '@/l
 import type { Message, MatchWithProfile } from '@/types/models';
 import { HardShadow } from '@/design/HardShadow';
 
+const CHAT_INPUT_HEIGHT = 48;
+
 export default function ChatScreen() {
   const { matchId } = useLocalSearchParams<{ matchId: string }>();
   const router = useRouter();
@@ -81,7 +83,7 @@ export default function ChatScreen() {
           keyExtractor={(item) => item.id}
           contentContainerStyle={{ padding: spacing.md, gap: spacing.xs, flexGrow: 1 }}
           onContentSizeChange={() => listRef.current?.scrollToEnd({ animated: true })}
-          ListEmptyComponent={<EmptyState icon="chatbubble-ellipses-outline" title={t('chat.empty')} />}
+          ListEmptyComponent={<EmptyState icon="chatbubble-ellipses-outline" title={t('chat.empty')} tone={colors.orange} />}
           renderItem={({ item }) => {
             const isMine = item.sender_id === session?.user.id;
             return (
@@ -109,6 +111,7 @@ export default function ChatScreen() {
               onChangeText={setDraft}
               onSubmitEditing={onSend}
               containerStyle={{ marginBottom: 0 }}
+              style={{ height: CHAT_INPUT_HEIGHT, paddingVertical: 0, textAlignVertical: 'center' }}
             />
           </View>
           <Pressable
@@ -116,11 +119,14 @@ export default function ChatScreen() {
             accessibilityRole="button"
             accessibilityLabel={t('chat.send')}
             style={{
+              height: CHAT_INPUT_HEIGHT,
+              width: CHAT_INPUT_HEIGHT,
+              alignItems: 'center',
+              justifyContent: 'center',
               backgroundColor: colors.green,
               borderWidth: borders.base,
               borderColor: colors.ink,
               borderRadius: 4,
-              padding: spacing.xs,
             }}
           >
             <Ionicons name="send" size={20} color={colors.ink} />

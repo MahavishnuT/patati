@@ -148,7 +148,7 @@ export default function Onboarding() {
                   {LANGUAGES.map((lang) => (
                     <Chip
                       key={lang.code}
-                      label={`${lang.flag} ${lang.nativeName}`}
+                      label={lang.nativeName}
                       selected={speaks.includes(lang.code)}
                       color={languageColors[lang.code] ?? colors.blue}
                       onPress={() => toggle(speaks, setSpeaks, lang.code)}
@@ -170,7 +170,7 @@ export default function Onboarding() {
                   {LANGUAGES.map((lang) => (
                     <Chip
                       key={lang.code}
-                      label={`${lang.flag} ${lang.nativeName}`}
+                      label={lang.nativeName}
                       selected={learns.includes(lang.code)}
                       color={languageColors[lang.code] ?? colors.pink}
                       onPress={() => toggle(learns, setLearns, lang.code)}

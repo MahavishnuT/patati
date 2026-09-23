@@ -15,7 +15,7 @@ const ACCENTS = [
   { emoji: '🗣️', x: -96, y: -64 },
   { emoji: '☕', x: 104, y: -40 },
   { emoji: '🤝', x: -84, y: 74 },
-  { emoji: '🇧🇪', x: 100, y: 70 },
+  { emoji: '📍', x: 100, y: 70 },
 ];
 
 /**
@@ -154,7 +154,7 @@ export function AnimatedSplash({ onFinish }: Props) {
           },
         ]}
       >
-        Bruxelles 🇧🇪
+        Bruxelles 📍
       </Animated.Text>
     </Animated.View>
   );
