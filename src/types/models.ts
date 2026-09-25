@@ -29,6 +29,13 @@ export type Match = {
 
 export type MatchWithProfile = Match & {
   otherProfile: Profile;
+  hasUnread: boolean;
+};
+
+export type MatchRead = {
+  match_id: string;
+  user_id: string;
+  last_read_at: string;
 };
 
 export type Message = {

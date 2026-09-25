@@ -165,6 +165,35 @@ alter publication supabase_realtime add table public.messages;
 alter publication supabase_realtime add table public.matches;
 
 -- ----------------------------------------------------------------------------
+-- 4bis. Suivi de lecture des messages (un enregistrement par match et par
+--       utilisateur, mis à jour quand il ouvre/consulte la conversation).
+-- ----------------------------------------------------------------------------
+create table if not exists public.match_reads (
+  match_id uuid not null references public.matches (id) on delete cascade,
+  user_id uuid not null references public.profiles (id) on delete cascade,
+  last_read_at timestamptz not null default now(),
+  primary key (match_id, user_id)
+);
+
+alter table public.match_reads enable row level security;
+
+create policy "match_reads_select_own" on public.match_reads
+  for select using (auth.uid() = user_id);
+
+create policy "match_reads_upsert_own" on public.match_reads
+  for insert with check (
+    auth.uid() = user_id
+    and exists (
+      select 1 from public.matches m
+      where m.id = match_reads.match_id
+        and (m.user_a_id = auth.uid() or m.user_b_id = auth.uid())
+    )
+  );
+
+create policy "match_reads_update_own" on public.match_reads
+  for update using (auth.uid() = user_id);
+
+-- ----------------------------------------------------------------------------
 -- 5. Fonction de matching : profils compatibles avec l'utilisateur courant
 --    Compatible = (l'autre veut apprendre une langue que je parle)
 --             ET (l'autre parle une langue que je veux apprendre)

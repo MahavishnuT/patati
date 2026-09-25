@@ -7,7 +7,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { Text, Avatar, TextField, EmptyState } from '@/components';
 import { colors, spacing, borders } from '@/design/tokens';
 import { useAuth } from '@/lib/auth';
-import { getMyMatches, getMessages, sendMessage, subscribeToMessages } from '@/lib/data';
+import { getMyMatches, getMessages, sendMessage, subscribeToMessages, markMatchAsRead } from '@/lib/data';
 import type { Message, MatchWithProfile } from '@/types/models';
 import { HardShadow } from '@/design/HardShadow';
 
@@ -33,15 +33,19 @@ export default function ChatScreen() {
   useFocusEffect(
     useCallback(() => {
       void load();
-    }, [load]),
+      if (session?.user.id && matchId) void markMatchAsRead(matchId, session.user.id);
+    }, [load, session, matchId]),
   );
 
   useEffect(() => {
     if (!matchId) return;
     return subscribeToMessages(matchId, (message) => {
       setMessages((prev) => (prev.some((m) => m.id === message.id) ? prev : [...prev, message]));
+      if (session?.user.id && message.sender_id !== session.user.id) {
+        void markMatchAsRead(matchId, session.user.id);
+      }
     });
-  }, [matchId]);
+  }, [matchId, session]);
 
   const onSend = async () => {
     const content = draft.trim();

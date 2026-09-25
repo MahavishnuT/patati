@@ -4,7 +4,7 @@ import { useRouter, useFocusEffect } from 'expo-router';
 import { useTranslation } from 'react-i18next';
 import { Pressable } from 'react-native';
 import { Text, Card, Avatar, TopBar, EmptyState, ScreenContainer } from '@/components';
-import { colors, spacing } from '@/design/tokens';
+import { colors, spacing, borders } from '@/design/tokens';
 import { useAuth } from '@/lib/auth';
 import { getMyMatches } from '@/lib/data';
 import type { MatchWithProfile } from '@/types/models';
@@ -50,18 +50,31 @@ export default function MatchesList() {
           ) : null
         }
         renderItem={({ item }) => (
-          <Pressable onPress={() => router.push(`/(app)/matches/${item.id}`)}>
+          <Pressable onPress={() => router.push(`/(app)/matches/${item.id}`)} style={{ position: 'relative' }}>
             <Card offset={4}>
               <View style={{ flexDirection: 'row', alignItems: 'center', gap: spacing.sm }}>
                 <Avatar uri={item.otherProfile.photo_url} name={item.otherProfile.first_name} color={colors.orange} />
                 <View style={{ flex: 1 }}>
                   <Text variant="subtitle">{item.otherProfile.first_name}</Text>
-                  <Text variant="caption" style={{ color: colors.grey600 }} numberOfLines={1}>
-                    {t('matches.suggestMeetup')}
-                  </Text>
                 </View>
               </View>
             </Card>
+            {item.hasUnread && (
+              <View
+                accessibilityLabel={t('matches.newMessage')}
+                style={{
+                  position: 'absolute',
+                  top: -6,
+                  right: -6,
+                  width: 18,
+                  height: 18,
+                  borderRadius: 9,
+                  backgroundColor: colors.danger,
+                  borderWidth: borders.base,
+                  borderColor: colors.ink,
+                }}
+              />
+            )}
           </Pressable>
         )}
       />

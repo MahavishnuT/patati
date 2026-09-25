@@ -77,6 +77,7 @@
     "title": "Mes matches",
     "noMatches": "Pas encore de match",
     "noMatchesSubtitle": "Va dans Découvrir pour proposer ton premier match !",
+    "newMessage": "Nouveau message",
     "pending": "En attente",
     "matchedOn": "Match le {{date}}",
     "startChat": "Envoyer un message",

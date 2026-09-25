@@ -77,6 +77,7 @@
     "title": "My matches",
     "noMatches": "No matches yet",
     "noMatchesSubtitle": "Head to Discover to propose your first match!",
+    "newMessage": "New message",
     "pending": "Pending",
     "matchedOn": "Matched on {{date}}",
     "startChat": "Send a message",

@@ -77,6 +77,7 @@
     "title": "Mijn matches",
     "noMatches": "Nog geen matches",
     "noMatchesSubtitle": "Ga naar Ontdekken om je eerste match voor te stellen!",
+    "newMessage": "Nieuw bericht",
     "pending": "In afwachting",
     "matchedOn": "Match op {{date}}",
     "startChat": "Stuur een bericht",

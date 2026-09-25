@@ -45,18 +45,48 @@ export async function getMyMatches(userId: string): Promise<MatchWithProfile[]> 
   const matches = data ?? [];
   if (matches.length === 0) return [];
 
+  const matchIds = matches.map((m) => m.id);
   const otherIds = matches.map((m) => (m.user_a_id === userId ? m.user_b_id : m.user_a_id));
-  const { data: profiles, error: profilesError } = await supabase.from('profiles').select('*').in('id', otherIds);
+
+  const [{ data: profiles, error: profilesError }, { data: lastMessages, error: lastMessagesError }, readsResult] = await Promise.all([
+    supabase.from('profiles').select('*').in('id', otherIds),
+    supabase.from('messages').select('match_id, sender_id, created_at').in('match_id', matchIds).order('created_at', { ascending: false }),
+    supabase.from('match_reads').select('match_id, last_read_at').in('match_id', matchIds).eq('user_id', userId),
+  ]);
   if (profilesError) throw profilesError;
+  if (lastMessagesError) throw lastMessagesError;
+  // La table match_reads est optionnelle (migration récente) : si elle n'existe pas encore
+  // côté Supabase, on affiche quand même les matches, simplement sans badge "non lu".
+  if (readsResult.error) console.warn('match_reads indisponible (migration manquante ?) :', readsResult.error.message);
+  const reads = readsResult.error ? [] : (readsResult.data ?? []);
 
   const profileById = new Map((profiles ?? []).map((p) => [p.id, p as Profile]));
+  const lastMessageByMatch = new Map<string, { sender_id: string; created_at: string }>();
+  for (const msg of lastMessages ?? []) {
+    if (!lastMessageByMatch.has(msg.match_id)) lastMessageByMatch.set(msg.match_id, msg);
+  }
+  const lastReadByMatch = new Map(reads.map((r) => [r.match_id, r.last_read_at as string]));
+
   return matches
     .map((m) => {
       const otherId = m.user_a_id === userId ? m.user_b_id : m.user_a_id;
       const otherProfile = profileById.get(otherId);
-      return otherProfile ? { ...m, otherProfile } : null;
+      if (!otherProfile) return null;
+      const lastMessage = lastMessageByMatch.get(m.id);
+      const lastReadAt = lastReadByMatch.get(m.id);
+      const hasUnread = !!lastMessage && lastMessage.sender_id !== userId && (!lastReadAt || lastMessage.created_at > lastReadAt);
+      return { ...m, otherProfile, hasUnread };
     })
     .filter((m): m is MatchWithProfile => m !== null);
+}
+
+/** Marque une conversation comme lue pour l'utilisateur courant (fait disparaître la pastille "non lu"). */
+export async function markMatchAsRead(matchId: string, userId: string): Promise<void> {
+  const { error } = await supabase
+    .from('match_reads')
+    .upsert({ match_id: matchId, user_id: userId, last_read_at: new Date().toISOString() }, { onConflict: 'match_id,user_id' });
+  // Ne bloque jamais le chat : si la table n'existe pas encore (migration manquante), on log et on continue.
+  if (error) console.warn('markMatchAsRead a échoué (migration match_reads manquante ?) :', error.message);
 }
 
 export async function getMessages(matchId: string): Promise<Message[]> {
