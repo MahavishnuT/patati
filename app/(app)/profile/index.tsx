@@ -22,7 +22,7 @@ export default function ProfileView() {
         tone={colors.green}
         right={
           <Pressable onPress={() => router.push('/(app)/profile/settings')} accessibilityRole="button" accessibilityLabel={t('profile.settings')}>
-            <Ionicons name="settings-outline" size={24} color={colors.ink} />
+            <Ionicons name="settings" size={24} color={colors.ink} />
           </Pressable>
         }
       />
