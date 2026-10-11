@@ -23,6 +23,7 @@ export default function AppLayout() {
         headerShown: false,
         tabBarActiveTintColor: colors.ink,
         tabBarInactiveTintColor: colors.grey400,
+        tabBarHideOnKeyboard: true,
         tabBarStyle: {
           borderTopWidth: borders.thick,
           borderTopColor: colors.ink,

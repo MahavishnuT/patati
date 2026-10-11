@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { View, FlatList, KeyboardAvoidingView, Platform, Pressable } from 'react-native';
+import { View, FlatList, KeyboardAvoidingView, Pressable } from 'react-native';
 import { useLocalSearchParams, useRouter, useFocusEffect } from 'expo-router';
 import { useTranslation } from 'react-i18next';
 import { Ionicons } from '@expo/vector-icons';
@@ -60,7 +60,7 @@ export default function ChatScreen() {
   };
 
   return (
-    <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : undefined} style={{ flex: 1, backgroundColor: colors.bg }}>
+    <KeyboardAvoidingView behavior="padding" style={{ flex: 1, backgroundColor: colors.bg }}>
       <SafeAreaView style={{ flex: 1 }} edges={['bottom']}>
         <SafeAreaView edges={['top']} style={{ backgroundColor: colors.orange, borderBottomWidth: borders.thick, borderBottomColor: colors.ink }}>
           <View
