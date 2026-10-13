@@ -6,6 +6,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { Text, Button, TextField, ScreenContainer } from '@/components';
 import { supabase } from '@/lib/supabase';
 import { colors, spacing } from '@/design/tokens';
+import { isAdultBirthdate, isValidBirthdate } from '@/lib/age';
 
 export default function Signup() {
   const { t } = useTranslation();
@@ -13,18 +14,27 @@ export default function Signup() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [birthdate, setBirthdate] = useState('');
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [checkEmail, setCheckEmail] = useState(false);
 
   const onSubmit = async () => {
     setError(null);
+    if (!isAdultBirthdate(birthdate)) {
+      setError(t(isValidBirthdate(birthdate) ? 'auth.adultOnly' : 'auth.birthdateInvalid'));
+      return;
+    }
     if (password !== confirmPassword) {
       setError(t('auth.passwordsDontMatch'));
       return;
     }
     setLoading(true);
-    const { data, error: signUpError } = await supabase.auth.signUp({ email: email.trim(), password });
+    const { data, error: signUpError } = await supabase.auth.signUp({
+      email: email.trim(),
+      password,
+      options: { data: { birthdate } },
+    });
     setLoading(false);
     if (signUpError) {
       setError(t('auth.genericError'));
@@ -51,6 +61,17 @@ export default function Signup() {
               <Text variant="body">{t('auth.checkEmail')}</Text>
             ) : (
               <>
+                <TextField
+                  label={t('onboarding.birthdateLabel')}
+                  placeholder="YYYY-MM-DD"
+                  value={birthdate}
+                  onChangeText={setBirthdate}
+                  keyboardType="numbers-and-punctuation"
+                  maxLength={10}
+                />
+                <Text variant="caption" style={{ color: colors.grey600, marginBottom: spacing.sm }}>
+                  {t('onboarding.adultOnly')}
+                </Text>
                 <TextField
                   label={t('auth.email')}
                   autoCapitalize="none"

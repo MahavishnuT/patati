@@ -31,7 +31,9 @@
     "passwordsDontMatch": "Le password non coincidono",
     "genericError": "Impossibile continuare, controlla i tuoi dati",
     "forgotPassword": "Password dimenticata?",
-    "checkEmail": "Controlla la tua email per confermare l'account."
+    "checkEmail": "Controlla la tua email per confermare l'account.",
+    "birthdateInvalid": "Inserisci la data di nascita nel formato AAAA-MM-GG.",
+    "adultOnly": "Babbel'r è disponibile solo per le persone di almeno 18 anni."
   },
   "onboarding": {
     "welcomeTitle": "Benvenuto/a su Babbel'r",
@@ -40,6 +42,7 @@
     "nameLabel": "Il tuo nome",
     "namePlaceholder": "Come ti chiamiamo?",
     "birthdateLabel": "Data di nascita",
+    "adultOnly": "Babbel'r è disponibile solo per le persone di almeno 18 anni.",
     "bioLabel": "Una frase per presentarti",
     "bioPlaceholder": "Amante della cucina italiana, sempre pronto/a per un caffè...",
     "citySpeaks": "a Bruxelles",
@@ -96,7 +99,31 @@
     "editProfile": "Modifica il mio profilo",
     "logout": "Esci",
     "deleteAccount": "Elimina il mio account",
+    "deleteAccountConfirm": "Il tuo account, profilo, match e messaggi verranno eliminati definitivamente. Continuare?",
+    "deleteAccountFailed": "Impossibile eliminare l'account. Riprova più tardi o contatta il supporto.",
     "about": "Informazioni",
     "version": "Versione"
+  },
+  "safety": {
+    "actions": "Opzioni di sicurezza",
+    "reportAction": "Segnala",
+    "blockAction": "Blocca questa persona",
+    "blockTitle": "Bloccare questa persona?",
+    "blockMessage": "Non vedrete più i rispettivi profili e conversazioni. Non puoi annullare il blocco dall'app.",
+    "blockFailed": "Impossibile bloccare questa persona. Riprova più tardi.",
+    "reportTitle": "Perché vuoi segnalare questa persona?",
+    "reportSubmitted": "Segnalazione inviata",
+    "reportThanks": "Grazie. Il nostro team esaminerà la segnalazione.",
+    "reportFailed": "Impossibile inviare la segnalazione. Riprova più tardi.",
+    "profilePendingTitle": "Il tuo profilo è in fase di revisione",
+    "profilePendingMessage": "Potrai scoprire altri profili dopo l'approvazione della foto e della descrizione.",
+    "reasons": {
+      "inappropriate_profile": "Profilo inappropriato",
+      "harassment": "Molestie o comportamento offensivo",
+      "spam": "Spam o truffa",
+      "sexual_content": "Contenuto sessuale",
+      "underage": "Questa persona potrebbe avere meno di 18 anni",
+      "other": "Altro"
+    }
   }
 }

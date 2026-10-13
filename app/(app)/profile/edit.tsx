@@ -31,9 +31,7 @@ export default function EditProfile() {
   const [learns, setLearns] = useState<LanguageCode[]>(
     (profile?.languages_learning as LanguageCode[]) ?? [],
   );
-  const [photoUri, setPhotoUri] = useState<string | null>(
-    profile?.photo_url ?? null,
-  );
+  const [photoUri, setPhotoUri] = useState<string | null>(profile?.photo_url ?? null);
   const [photoMimeType, setPhotoMimeType] = useState<string | null>(null);
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -68,7 +66,7 @@ export default function EditProfile() {
     setSaving(true);
     setError(null);
     try {
-      let photoUrl = profile?.photo_url ?? null;
+      let photoUrl = profile?.photo_path ?? null;
       if (photoUri && photoUri !== profile?.photo_url) {
         photoUrl = await uploadAvatar(session.user.id, photoUri, photoMimeType);
       }

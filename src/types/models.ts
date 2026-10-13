@@ -3,12 +3,13 @@ import type { LanguageCode } from '@/lib/languages';
 export type Profile = {
   id: string;
   first_name: string;
-  birthdate: string | null;
   bio: string;
   city: string;
   photo_url: string | null;
+  photo_path: string | null;
   languages_spoken: LanguageCode[];
   languages_learning: LanguageCode[];
+  moderation_status: 'pending' | 'approved' | 'rejected';
   created_at: string;
   updated_at: string;
 };

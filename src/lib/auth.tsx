@@ -3,6 +3,7 @@ import type { Session } from '@supabase/supabase-js';
 import { supabase } from './supabase';
 import { getMyProfile } from './data';
 import type { Profile } from '@/types/models';
+import { isAdultBirthdate } from './age';
 
 type AuthContextValue = {
   session: Session | null;
@@ -19,7 +20,11 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [profile, setProfile] = useState<Profile | null>(null);
   const [loading, setLoading] = useState(true);
 
-  const loadProfile = useCallback(async (userId: string) => {
+  const loadProfile = useCallback(async (userId: string, birthdate: unknown) => {
+    if (!isAdultBirthdate(birthdate)) {
+      setProfile(null);
+      return;
+    }
     try {
       const p = await getMyProfile(userId);
       setProfile(p);
@@ -35,7 +40,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       if (!isMounted) return;
       setSession(data.session);
       if (data.session?.user.id) {
-        await loadProfile(data.session.user.id);
+        await loadProfile(data.session.user.id, data.session.user.user_metadata?.birthdate);
       }
       setLoading(false);
     });
@@ -43,7 +48,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     const { data: listener } = supabase.auth.onAuthStateChange(async (_event, newSession) => {
       setSession(newSession);
       if (newSession?.user.id) {
-        await loadProfile(newSession.user.id);
+        await loadProfile(newSession.user.id, newSession.user.user_metadata?.birthdate);
       } else {
         setProfile(null);
       }
@@ -56,10 +61,13 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }, [loadProfile]);
 
   const refreshProfile = useCallback(async () => {
-    if (session?.user.id) {
-      await loadProfile(session.user.id);
+    const { data, error } = await supabase.auth.getUser();
+    if (error) throw error;
+    if (data.user) {
+      setSession((current) => (current?.user.id === data.user.id ? { ...current, user: data.user } : current));
+      await loadProfile(data.user.id, data.user.user_metadata?.birthdate);
     }
-  }, [session, loadProfile]);
+  }, [loadProfile]);
 
   const signOut = useCallback(async () => {
     await supabase.auth.signOut();

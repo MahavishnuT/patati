@@ -4,7 +4,7 @@ import { useLocalSearchParams, useRouter, useFocusEffect } from 'expo-router';
 import { useTranslation } from 'react-i18next';
 import { Ionicons } from '@expo/vector-icons';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { Text, Avatar, TextField, EmptyState } from '@/components';
+import { Text, Avatar, TextField, EmptyState, UserSafetyActions } from '@/components';
 import { colors, spacing, borders } from '@/design/tokens';
 import { useAuth } from '@/lib/auth';
 import { getMyMatches, getMessages, sendMessage, subscribeToMessages, markMatchAsRead } from '@/lib/data';
@@ -78,6 +78,13 @@ export default function ChatScreen() {
             <Text variant="subtitle" numberOfLines={1}>
               {match?.otherProfile.first_name ?? ''}
             </Text>
+            {match && session?.user.id && (
+              <UserSafetyActions
+                reporterId={session.user.id}
+                reportedUserId={match.otherProfile.id}
+                onBlocked={() => router.replace('/(app)/matches')}
+              />
+            )}
           </View>
         </SafeAreaView>
 
@@ -91,18 +98,22 @@ export default function ChatScreen() {
           renderItem={({ item }) => {
             const isMine = item.sender_id === session?.user.id;
             return (
-              <HardShadow backgroundColor={isMine ? colors.blue : colors.white} borderColor={colors.ink} borderWidth={borders.base} radius={8} offset={4} style={{ alignSelf: isMine ? 'flex-end' : 'flex-start', maxWidth: '80%', marginBottom: spacing.xxs }}>   
-                <View
-                  style={{
-                    paddingVertical: spacing.xs,
-                    paddingHorizontal: spacing.sm,
-                  }}
-                >
-                  <Text variant="body" style={{ color: isMine ? colors.white : colors.ink }}>
-                    {item.content}
-                  </Text>
-                </View>
-              </HardShadow>
+              <View style={{ alignSelf: isMine ? 'flex-end' : 'flex-start', flexDirection: 'row', alignItems: 'center', gap: spacing.xxs, maxWidth: '90%' }}>
+                <HardShadow backgroundColor={isMine ? colors.blue : colors.white} borderColor={colors.ink} borderWidth={borders.base} radius={8} offset={4} style={{ maxWidth: '90%', marginBottom: spacing.xxs }}>
+                  <View style={{ paddingVertical: spacing.xs, paddingHorizontal: spacing.sm }}>
+                    <Text variant="body" style={{ color: isMine ? colors.white : colors.ink }}>
+                      {item.content}
+                    </Text>
+                  </View>
+                </HardShadow>
+                {!isMine && match && session?.user.id && (
+                  <UserSafetyActions
+                    reporterId={session.user.id}
+                    reportedUserId={item.sender_id}
+                    messageContext={{ matchId: item.match_id, messageId: item.id, content: item.content }}
+                  />
+                )}
+              </View>
             );
           }}
         />

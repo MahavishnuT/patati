@@ -31,7 +31,9 @@
     "passwordsDontMatch": "Passwords don't match",
     "genericError": "Couldn't continue, please check your credentials",
     "forgotPassword": "Forgot password?",
-    "checkEmail": "Check your inbox to confirm your account."
+    "checkEmail": "Check your inbox to confirm your account.",
+    "birthdateInvalid": "Enter your date of birth as YYYY-MM-DD.",
+    "adultOnly": "Babbel'r is only available to people aged 18 or over."
   },
   "onboarding": {
     "welcomeTitle": "Welcome to Babbel'r",
@@ -40,6 +42,7 @@
     "nameLabel": "Your first name",
     "namePlaceholder": "What should we call you?",
     "birthdateLabel": "Date of birth",
+    "adultOnly": "Babbel'r is only available to people aged 18 or over.",
     "bioLabel": "A line to introduce yourself",
     "bioPlaceholder": "Italian food lover, always up for a coffee...",
     "citySpeaks": "in Brussels",
@@ -96,7 +99,31 @@
     "editProfile": "Edit my profile",
     "logout": "Log out",
     "deleteAccount": "Delete my account",
+    "deleteAccountConfirm": "This permanently deletes your account, profile, matches, and messages. Continue?",
+    "deleteAccountFailed": "Account deletion failed. Please try again later or contact support.",
     "about": "About",
     "version": "Version"
+  },
+  "safety": {
+    "actions": "Safety options",
+    "reportAction": "Report",
+    "blockAction": "Block this person",
+    "blockTitle": "Block this person?",
+    "blockMessage": "You will no longer see each other's profiles or conversations. You can't undo this block in the app.",
+    "blockFailed": "Couldn't block this person right now.",
+    "reportTitle": "Why are you reporting this person?",
+    "reportSubmitted": "Report sent",
+    "reportThanks": "Thank you. Our team will review this report.",
+    "reportFailed": "Couldn't send the report. Please try again later.",
+    "profilePendingTitle": "Your profile is being reviewed",
+    "profilePendingMessage": "You can discover profiles after your photo and description have been approved.",
+    "reasons": {
+      "inappropriate_profile": "Inappropriate profile",
+      "harassment": "Harassment or abusive behavior",
+      "spam": "Spam or scam",
+      "sexual_content": "Sexual content",
+      "underage": "This person may be under 18",
+      "other": "Other"
+    }
   }
 }

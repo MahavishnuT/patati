@@ -8,3 +8,4 @@ export { TopBar } from './TopBar';
 export { EmptyState } from './EmptyState';
 export { ScreenContainer } from './ScreenContainer';
 export { AnimatedSplash } from './AnimatedSplash';
+export { UserSafetyActions } from './UserSafetyActions';

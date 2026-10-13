@@ -4,10 +4,31 @@ import { supabase } from './supabase';
 import type { Profile, MatchWithProfile, Message } from '@/types/models';
 import type { LanguageCode } from './languages';
 
+const AVATAR_URL_TTL_SECONDS = 60 * 60;
+
+function getAvatarPath(photoUrl: string): string {
+  const publicMarker = '/storage/v1/object/public/avatars/';
+  const signedMarker = '/storage/v1/object/sign/avatars/';
+  const marker = photoUrl.includes(publicMarker) ? publicMarker : photoUrl.includes(signedMarker) ? signedMarker : null;
+  if (!marker) return photoUrl;
+
+  const start = photoUrl.indexOf(marker) + marker.length;
+  return decodeURIComponent(photoUrl.slice(start).split('?')[0]);
+}
+
+async function withSignedAvatar<T extends { photo_url: string | null }>(profile: T): Promise<T & { photo_path: string | null }> {
+  if (!profile.photo_url) return { ...profile, photo_url: null, photo_path: null };
+
+  const path = getAvatarPath(profile.photo_url);
+  const { data, error } = await supabase.storage.from('avatars').createSignedUrl(path, AVATAR_URL_TTL_SECONDS);
+  if (error) throw error;
+  return { ...profile, photo_url: data.signedUrl, photo_path: path };
+}
+
 export async function getMyProfile(userId: string): Promise<Profile | null> {
   const { data, error } = await supabase.from('profiles').select('*').eq('id', userId).maybeSingle();
   if (error) throw error;
-  return data as Profile | null;
+  return data ? await withSignedAvatar(data as Profile) : null;
 }
 
 export async function upsertProfile(profile: Partial<Profile> & { id: string }): Promise<Profile> {
@@ -19,11 +40,50 @@ export async function upsertProfile(profile: Partial<Profile> & { id: string }):
 export async function getCompatibleProfiles(userId: string): Promise<Profile[]> {
   const { data, error } = await supabase.rpc('get_compatible_profiles', { current_user_id: userId });
   if (error) throw error;
-  return (data ?? []) as Profile[];
+  const profiles = (data ?? []) as Profile[];
+  return Promise.all(profiles.map((profile) => withSignedAvatar(profile)));
 }
 
 export async function proposeMatch(fromUserId: string, toUserId: string): Promise<void> {
   const { error } = await supabase.from('match_requests').insert({ from_user_id: fromUserId, to_user_id: toUserId });
+  if (error) throw error;
+}
+
+export type ReportReason =
+  | 'inappropriate_profile'
+  | 'harassment'
+  | 'spam'
+  | 'sexual_content'
+  | 'underage'
+  | 'other';
+
+export async function reportUser(
+  reporterId: string,
+  reportedUserId: string,
+  reason: ReportReason,
+  context?: { matchId: string; messageId: string; content: string },
+): Promise<void> {
+  const report = {
+    reporter_id: reporterId,
+    reported_user_id: reportedUserId,
+    reason,
+    ...(context
+      ? {
+          match_id: context.matchId,
+          message_id: context.messageId,
+          reported_content: context.content,
+        }
+      : {}),
+  };
+  const { error } = await supabase.from('content_reports').insert(report);
+  if (error) throw error;
+}
+
+export async function blockUser(blockerId: string, blockedId: string): Promise<void> {
+  const { error } = await supabase.from('user_blocks').upsert(
+    { blocker_id: blockerId, blocked_id: blockedId },
+    { onConflict: 'blocker_id,blocked_id' },
+  );
   if (error) throw error;
 }
 
@@ -60,7 +120,9 @@ export async function getMyMatches(userId: string): Promise<MatchWithProfile[]> 
   if (readsResult.error) console.warn('match_reads indisponible (migration manquante ?) :', readsResult.error.message);
   const reads = readsResult.error ? [] : (readsResult.data ?? []);
 
-  const profileById = new Map((profiles ?? []).map((p) => [p.id, p as Profile]));
+  const profileRows = (profiles ?? []) as Profile[];
+  const signedProfiles = await Promise.all(profileRows.map(async (profile) => [profile.id, await withSignedAvatar(profile)] as const));
+  const signedProfileById = new Map(signedProfiles);
   const lastMessageByMatch = new Map<string, { sender_id: string; created_at: string }>();
   for (const msg of lastMessages ?? []) {
     if (!lastMessageByMatch.has(msg.match_id)) lastMessageByMatch.set(msg.match_id, msg);
@@ -70,7 +132,7 @@ export async function getMyMatches(userId: string): Promise<MatchWithProfile[]> 
   return matches
     .map((m) => {
       const otherId = m.user_a_id === userId ? m.user_b_id : m.user_a_id;
-      const otherProfile = profileById.get(otherId);
+      const otherProfile = signedProfileById.get(otherId);
       if (!otherProfile) return null;
       const lastMessage = lastMessageByMatch.get(m.id);
       const lastReadAt = lastReadByMatch.get(m.id);
@@ -165,6 +227,5 @@ export async function uploadAvatar(userId: string, uri: string, mimeType?: strin
   });
   if (error) throw error;
 
-  const { data } = supabase.storage.from('avatars').getPublicUrl(path);
-  return `${data.publicUrl}?t=${Date.now()}`;
+  return path;
 }

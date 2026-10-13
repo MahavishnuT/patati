@@ -2,7 +2,7 @@ import React, { useCallback, useState } from 'react';
 import { View, FlatList, RefreshControl } from 'react-native';
 import { useFocusEffect } from 'expo-router';
 import { useTranslation } from 'react-i18next';
-import { Text, Card, Chip, Avatar, Button, TopBar, EmptyState, ScreenContainer } from '@/components';
+import { Text, Card, Chip, Avatar, Button, TopBar, EmptyState, ScreenContainer, UserSafetyActions } from '@/components';
 import { colors, spacing, languageColors } from '@/design/tokens';
 import { languageLabel } from '@/lib/languages';
 import { useAuth } from '@/lib/auth';
@@ -66,7 +66,12 @@ export default function Discover() {
         refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
         ListEmptyComponent={
           !loading ? (
-            <EmptyState icon="cafe-outline" title={t('discover.noProfiles')} subtitle={t('discover.noProfilesSubtitle')} tone={colors.yellow} />
+            <EmptyState
+              icon={profile?.moderation_status === 'approved' ? 'cafe-outline' : 'time-outline'}
+              title={profile?.moderation_status === 'approved' ? t('discover.noProfiles') : t('safety.profilePendingTitle')}
+              subtitle={profile?.moderation_status === 'approved' ? t('discover.noProfilesSubtitle') : t('safety.profilePendingMessage')}
+              tone={colors.yellow}
+            />
           ) : null
         }
         renderItem={({ item }) => {
@@ -84,6 +89,13 @@ export default function Discover() {
                     </Text>
                   )}
                 </View>
+                {session?.user.id && (
+                  <UserSafetyActions
+                    reporterId={session.user.id}
+                    reportedUserId={item.id}
+                    onBlocked={() => setProfiles((current) => current.filter((profileItem) => profileItem.id !== item.id))}
+                  />
+                )}
               </View>
 
               <View style={{ marginTop: spacing.sm, gap: spacing.xxs }}>

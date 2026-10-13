@@ -31,7 +31,9 @@
     "passwordsDontMatch": "Les mots de passe ne correspondent pas",
     "genericError": "Impossible de continuer, vérifie tes identifiants",
     "forgotPassword": "Mot de passe oublié ?",
-    "checkEmail": "Vérifie ta boîte mail pour confirmer ton compte."
+    "checkEmail": "Vérifie ta boîte mail pour confirmer ton compte.",
+    "birthdateInvalid": "Entre ta date de naissance au format AAAA-MM-JJ.",
+    "adultOnly": "Babbel'r est réservé aux personnes de 18 ans et plus."
   },
   "onboarding": {
     "welcomeTitle": "Bienvenue à Babbel'r",
@@ -40,6 +42,7 @@
     "nameLabel": "Ton prénom",
     "namePlaceholder": "Comment on t'appelle ?",
     "birthdateLabel": "Date de naissance",
+    "adultOnly": "Babbel'r est réservé aux personnes de 18 ans et plus.",
     "bioLabel": "Une phrase pour te présenter",
     "bioPlaceholder": "Passionné·e de cuisine italienne, toujours partant·e pour un café...",
     "citySpeaks": "à Bruxelles",
@@ -96,7 +99,31 @@
     "editProfile": "Modifier mon profil",
     "logout": "Se déconnecter",
     "deleteAccount": "Supprimer mon compte",
+    "deleteAccountConfirm": "Cette action supprimera définitivement ton compte, ton profil, tes matches et tes messages. Continuer ?",
+    "deleteAccountFailed": "La suppression du compte a échoué. Réessaie plus tard ou contacte le support.",
     "about": "À propos",
     "version": "Version"
+  },
+  "safety": {
+    "actions": "Options de sécurité",
+    "reportAction": "Signaler",
+    "blockAction": "Bloquer cette personne",
+    "blockTitle": "Bloquer cette personne ?",
+    "blockMessage": "Vous ne verrez plus vos profils ni vos conversations. Le blocage ne peut pas être annulé depuis l’application.",
+    "blockFailed": "Impossible de bloquer cette personne pour le moment.",
+    "reportTitle": "Pourquoi signales-tu cette personne ?",
+    "reportSubmitted": "Signalement envoyé",
+    "reportThanks": "Merci. Notre équipe examinera ce signalement.",
+    "reportFailed": "Impossible d’envoyer le signalement. Réessaie plus tard.",
+    "profilePendingTitle": "Ton profil est en cours de vérification",
+    "profilePendingMessage": "Tu pourras découvrir des profils après validation de ta photo et de ta description.",
+    "reasons": {
+      "inappropriate_profile": "Profil inapproprié",
+      "harassment": "Harcèlement ou comportement abusif",
+      "spam": "Spam ou arnaque",
+      "sexual_content": "Contenu sexuel",
+      "underage": "Cette personne semble avoir moins de 18 ans",
+      "other": "Autre"
+    }
   }
 }

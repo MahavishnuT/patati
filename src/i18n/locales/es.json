@@ -31,7 +31,9 @@
     "passwordsDontMatch": "Las contraseñas no coinciden",
     "genericError": "No se pudo continuar, revisa tus datos",
     "forgotPassword": "¿Olvidaste tu contraseña?",
-    "checkEmail": "Revisa tu correo para confirmar tu cuenta."
+    "checkEmail": "Revisa tu correo para confirmar tu cuenta.",
+    "birthdateInvalid": "Introduce tu fecha de nacimiento como AAAA-MM-DD.",
+    "adultOnly": "Babbel'r solo está disponible para personas mayores de 18 años."
   },
   "onboarding": {
     "welcomeTitle": "Bienvenido a Babbel'r",
@@ -40,6 +42,7 @@
     "nameLabel": "Tu nombre",
     "namePlaceholder": "¿Cómo te llamamos?",
     "birthdateLabel": "Fecha de nacimiento",
+    "adultOnly": "Babbel'r solo está disponible para personas mayores de 18 años.",
     "bioLabel": "Una frase para presentarte",
     "bioPlaceholder": "Amante de la comida italiana, siempre listo para un café...",
     "citySpeaks": "en Bruselas",
@@ -96,7 +99,31 @@
     "editProfile": "Editar mi perfil",
     "logout": "Cerrar sesión",
     "deleteAccount": "Eliminar mi cuenta",
+    "deleteAccountConfirm": "Se eliminarán definitivamente tu cuenta, perfil, matches y mensajes. ¿Continuar?",
+    "deleteAccountFailed": "No se pudo eliminar la cuenta. Inténtalo más tarde o contacta con soporte.",
     "about": "Acerca de",
     "version": "Versión"
+  },
+  "safety": {
+    "actions": "Opciones de seguridad",
+    "reportAction": "Denunciar",
+    "blockAction": "Bloquear a esta persona",
+    "blockTitle": "¿Bloquear a esta persona?",
+    "blockMessage": "Dejaréis de ver vuestros perfiles y conversaciones. No puedes deshacer el bloqueo desde la app.",
+    "blockFailed": "No se pudo bloquear a esta persona. Inténtalo más tarde.",
+    "reportTitle": "¿Por qué denuncias a esta persona?",
+    "reportSubmitted": "Denuncia enviada",
+    "reportThanks": "Gracias. Nuestro equipo revisará esta denuncia.",
+    "reportFailed": "No se pudo enviar la denuncia. Inténtalo más tarde.",
+    "profilePendingTitle": "Estamos revisando tu perfil",
+    "profilePendingMessage": "Podrás descubrir perfiles cuando aprobemos tu foto y descripción.",
+    "reasons": {
+      "inappropriate_profile": "Perfil inapropiado",
+      "harassment": "Acoso o comportamiento abusivo",
+      "spam": "Spam o estafa",
+      "sexual_content": "Contenido sexual",
+      "underage": "Esta persona podría ser menor de 18 años",
+      "other": "Otro"
+    }
   }
 }

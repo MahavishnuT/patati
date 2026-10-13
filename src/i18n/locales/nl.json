@@ -31,7 +31,9 @@
     "passwordsDontMatch": "Wachtwoorden komen niet overeen",
     "genericError": "Kon niet doorgaan, controleer je gegevens",
     "forgotPassword": "Wachtwoord vergeten?",
-    "checkEmail": "Controleer je mailbox om je account te bevestigen."
+    "checkEmail": "Controleer je mailbox om je account te bevestigen.",
+    "birthdateInvalid": "Vul je geboortedatum in als JJJJ-MM-DD.",
+    "adultOnly": "Babbel'r is alleen beschikbaar voor personen vanaf 18 jaar."
   },
   "onboarding": {
     "welcomeTitle": "Welkom bij Babbel'r",
@@ -40,6 +42,7 @@
     "nameLabel": "Je voornaam",
     "namePlaceholder": "Hoe mogen we je noemen?",
     "birthdateLabel": "Geboortedatum",
+    "adultOnly": "Babbel'r is alleen beschikbaar voor personen vanaf 18 jaar.",
     "bioLabel": "Een zin om jezelf voor te stellen",
     "bioPlaceholder": "Fan van Italiaans eten, altijd in voor een koffie...",
     "citySpeaks": "in Brussel",
@@ -96,7 +99,31 @@
     "editProfile": "Mijn profiel bewerken",
     "logout": "Uitloggen",
     "deleteAccount": "Mijn account verwijderen",
+    "deleteAccountConfirm": "Je account, profiel, matches en berichten worden definitief verwijderd. Doorgaan?",
+    "deleteAccountFailed": "Het verwijderen van je account is mislukt. Probeer het later opnieuw of neem contact op met support.",
     "about": "Over",
     "version": "Versie"
+  },
+  "safety": {
+    "actions": "Veiligheidsopties",
+    "reportAction": "Melden",
+    "blockAction": "Deze persoon blokkeren",
+    "blockTitle": "Deze persoon blokkeren?",
+    "blockMessage": "Jullie zien elkaars profielen en gesprekken niet meer. Je kunt deze blokkering niet ongedaan maken in de app.",
+    "blockFailed": "Deze persoon kon nu niet worden geblokkeerd.",
+    "reportTitle": "Waarom wil je deze persoon melden?",
+    "reportSubmitted": "Melding verzonden",
+    "reportThanks": "Bedankt. Ons team zal deze melding beoordelen.",
+    "reportFailed": "De melding kon niet worden verzonden. Probeer het later opnieuw.",
+    "profilePendingTitle": "Je profiel wordt gecontroleerd",
+    "profilePendingMessage": "Je kunt profielen ontdekken zodra je foto en beschrijving zijn goedgekeurd.",
+    "reasons": {
+      "inappropriate_profile": "Ongepast profiel",
+      "harassment": "Intimidatie of misbruik",
+      "spam": "Spam of oplichting",
+      "sexual_content": "Seksuele inhoud",
+      "underage": "Deze persoon is mogelijk jonger dan 18",
+      "other": "Anders"
+    }
   }
 }

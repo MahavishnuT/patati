@@ -9,6 +9,8 @@ import { colors, spacing, languageColors } from '@/design/tokens';
 import { LANGUAGES, LanguageCode } from '@/lib/languages';
 import { useAuth } from '@/lib/auth';
 import { upsertProfile, uploadAvatar } from '@/lib/data';
+import { isAdultBirthdate, isValidBirthdate } from '@/lib/age';
+import { supabase } from '@/lib/supabase';
 
 const STEPS = ['identity', 'speaks', 'learns', 'photo'] as const;
 type Step = (typeof STEPS)[number];
@@ -22,6 +24,9 @@ export default function Onboarding() {
   const step: Step = STEPS[stepIndex];
 
   const [firstName, setFirstName] = useState('');
+  const [birthdate, setBirthdate] = useState(
+    typeof session?.user.user_metadata?.birthdate === 'string' ? session.user.user_metadata.birthdate : '',
+  );
   const [bio, setBio] = useState('');
   const [speaks, setSpeaks] = useState<LanguageCode[]>([]);
   const [learns, setLearns] = useState<LanguageCode[]>([]);
@@ -55,6 +60,10 @@ export default function Onboarding() {
       setError(t('onboarding.minOneLanguage'));
       return;
     }
+    if (step === 'identity' && !isAdultBirthdate(birthdate)) {
+      setError(t(isValidBirthdate(birthdate) ? 'auth.adultOnly' : 'auth.birthdateInvalid'));
+      return;
+    }
     if (step === 'speaks' && speaks.length === 0) {
       setError(t('onboarding.minOneLanguage'));
       return;
@@ -75,6 +84,8 @@ export default function Onboarding() {
     setSaving(true);
     setError(null);
     try {
+      const { error: metadataError } = await supabase.auth.updateUser({ data: { birthdate } });
+      if (metadataError) throw metadataError;
       let photoUrl: string | null = null;
       if (photoUri) {
         photoUrl = await uploadAvatar(session.user.id, photoUri, photoMimeType);
@@ -122,6 +133,17 @@ export default function Onboarding() {
                   {t('onboarding.nameLabel')}
                 </Text>
                 <TextField placeholder={t('onboarding.namePlaceholder')} value={firstName} onChangeText={setFirstName} />
+                <TextField
+                  label={t('onboarding.birthdateLabel')}
+                  placeholder="YYYY-MM-DD"
+                  value={birthdate}
+                  onChangeText={setBirthdate}
+                  keyboardType="numbers-and-punctuation"
+                  maxLength={10}
+                />
+                <Text variant="caption" style={{ color: colors.grey600, marginBottom: spacing.sm }}>
+                  {t('onboarding.adultOnly')}
+                </Text>
                 <Text variant="subtitle" style={{ marginTop: spacing.md, marginBottom: spacing.xxs }}>
                   {t('onboarding.bioLabel')}
                 </Text>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, ScrollView, Pressable } from 'react-native';
+import { View, ScrollView, Pressable, Alert } from 'react-native';
 import { useRouter } from 'expo-router';
 import { useTranslation } from 'react-i18next';
 import { Ionicons } from '@expo/vector-icons';
@@ -7,6 +7,7 @@ import { Text, Card, Button, TopBar, ScreenContainer } from '@/components';
 import { colors, spacing } from '@/design/tokens';
 import { useAuth } from '@/lib/auth';
 import { setAppLanguage, SUPPORTED_LANGUAGES } from '@/i18n';
+import { supabase } from '@/lib/supabase';
 import i18n from '@/i18n';
 
 const LANGUAGE_LABELS: Record<string, string> = {
@@ -22,10 +23,39 @@ export default function Settings() {
   const router = useRouter();
   const { signOut } = useAuth();
   const [currentLang, setCurrentLang] = React.useState(i18n.language);
+  const [deletingAccount, setDeletingAccount] = React.useState(false);
 
   const onSelectLanguage = async (lang: (typeof SUPPORTED_LANGUAGES)[number]) => {
     await setAppLanguage(lang);
     setCurrentLang(lang);
+  };
+
+  const deleteAccount = async () => {
+    setDeletingAccount(true);
+    try {
+      const { error } = await supabase.functions.invoke('delete-account');
+      if (error) throw error;
+
+      const { error: signOutError } = await supabase.auth.signOut({ scope: 'local' });
+      if (signOutError) throw signOutError;
+      router.replace('/(auth)/welcome');
+    } catch (error) {
+      console.error('Account deletion failed:', error);
+      Alert.alert(t('common.error'), t('settings.deleteAccountFailed'));
+    } finally {
+      setDeletingAccount(false);
+    }
+  };
+
+  const confirmDeleteAccount = () => {
+    Alert.alert(t('settings.deleteAccount'), t('settings.deleteAccountConfirm'), [
+      { text: t('common.cancel'), style: 'cancel' },
+      {
+        text: t('common.delete'),
+        style: 'destructive',
+        onPress: () => void deleteAccount(),
+      },
+    ]);
   };
 
   return (
@@ -69,6 +99,13 @@ export default function Settings() {
         </Card>
 
         <Button label={t('settings.logout')} tone="white" fullWidth onPress={() => signOut()} />
+        <Button
+          label={t('settings.deleteAccount')}
+          tone="pink"
+          fullWidth
+          loading={deletingAccount}
+          onPress={confirmDeleteAccount}
+        />
       </ScrollView>
     </ScreenContainer>
   );

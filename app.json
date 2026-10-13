@@ -26,6 +26,14 @@
       "expo-router",
       "expo-status-bar",
       "expo-splash-screen",
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "Babbel'r uses your photo library so you can add a profile picture.",
+          "cameraPermission": false,
+          "microphonePermission": false
+        }
+      ],
       "expo-image",
       "expo-secure-store",
       "expo-localization",
