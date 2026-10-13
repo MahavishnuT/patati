@@ -19,10 +19,10 @@ type Props = {
 const BRAND_PINK = 'rgb(255, 62, 143)';
 const EASE_OUT = Easing.bezier(0.23, 1, 0.32, 1);
 
-const LETTERS = 'Patati'.split('');
+const LETTERS = "Babbel'r".split('');
 const LETTER_START = 80;
-const LETTER_STAGGER = 70;
-const LETTER_DURATION = 380;
+const LETTER_STAGGER = 60;
+const LETTER_DURATION = 350;
 
 const BUBBLES_START = 620;
 const BUBBLE_STAGGER = 90;
@@ -97,7 +97,7 @@ function Bubble({ bubble, index, reduced }: { bubble: (typeof BUBBLES)[number]; 
 }
 
 /**
- * Écran d'ouverture : fond rose de marque, les lettres de "Patati" tombent une à une
+ * Écran d'ouverture : fond rose de marque, les lettres de "Babbel'r" tombent une à une
  * avec une ombre dure noire, puis des bulles "bonjour" en cinq langues apparaissent
  * autour, avant un fondu de sortie. Tout tourne sur le thread UI (Reanimated).
  * Avec "réduire les animations", seul le fondu reste.
@@ -195,8 +195,8 @@ const styles = StyleSheet.create({
   },
   logoText: {
     fontFamily: fontFamily.display,
-    fontSize: 56,
-    letterSpacing: 1,
+    fontSize: 46,
+    letterSpacing: 0.5,
   },
   logoShadow: {
     position: 'absolute',

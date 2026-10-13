@@ -1,4 +1,4 @@
-# Patati 🗣️☕
+# Babbel'r 🗣️☕
 
 Application de rencontre linguistique pour Bruxelles : trouve des personnes qui
 parlent la langue que tu apprends, et qui apprennent la langue que tu parles —
@@ -6,12 +6,12 @@ pour se rencontrer autour d'un café ou d'un verre.
 
 Stack : **Expo (React Native) + TypeScript + expo-router + Supabase**.
 Style : **néo-brutaliste** (couleurs vives, ombres noires dures, bords épais, formes plates).
-Langues de l'interface : 🇫🇷 français (défaut), 🇬🇧 anglais, 🇳🇱 néerlandais, 🇪🇸 espagnol, 🇮🇹 italien.
+Langues de l'interface : français (défaut), anglais, néerlandais, espagnol, italien.
 
 ## 1. Créer votre projet Supabase (gratuit, ~2 minutes)
 
 1. Allez sur [supabase.com](https://supabase.com) → **Start your project** → connectez-vous avec GitHub/Google/email.
-2. Cliquez **New project**. Choisissez un nom (ex. `patati`), un mot de passe de base de données (gardez-le de côté), une région proche (ex. `Central EU (Frankfurt)` pour Bruxelles), et validez.
+2. Cliquez **New project**. Choisissez un nom (ex. `babbelr`), un mot de passe de base de données (gardez-le de côté), une région proche (ex. `Central EU (Frankfurt)` pour Bruxelles), et validez.
 3. Attendez ~1-2 minutes que le projet soit provisionné.
 4. Dans le menu de gauche, allez dans **SQL Editor** → **New query**, collez tout le contenu du fichier [`supabase/schema.sql`](./supabase/schema.sql) de ce projet, puis cliquez **Run**. Cela crée toutes les tables, les règles de sécurité (RLS), le déclencheur de matching automatique, et le bucket de stockage pour les photos.
 5. Allez dans **Project Settings** (icône ⚙️) → **API**. Copiez :

@@ -1,6 +1,6 @@
 {
   "common": {
-    "appName": "Patati",
+    "appName": "Babbel'r",
     "tagline": "Habla. Aprende. Conoce.",
     "save": "Guardar",
     "cancel": "Cancelar",
@@ -34,7 +34,7 @@
     "checkEmail": "Revisa tu correo para confirmar tu cuenta."
   },
   "onboarding": {
-    "welcomeTitle": "Bienvenido a Patati",
+    "welcomeTitle": "Bienvenido a Babbel'r",
     "welcomeSubtitle": "La app que te ayuda a conocer gente tomando un café para practicar idiomas en Bruselas.",
     "getStarted": "Empezar",
     "nameLabel": "Tu nombre",

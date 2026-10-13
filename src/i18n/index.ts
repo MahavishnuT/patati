@@ -12,7 +12,7 @@ import it from './locales/it.json';
 export const SUPPORTED_LANGUAGES = ['fr', 'en', 'nl', 'es', 'it'] as const;
 export type SupportedLanguage = (typeof SUPPORTED_LANGUAGES)[number];
 
-const LANGUAGE_STORAGE_KEY = 'patati.appLanguage';
+const LANGUAGE_STORAGE_KEY = 'babbelr.appLanguage';
 
 const resources = {
   fr: { translation: fr },

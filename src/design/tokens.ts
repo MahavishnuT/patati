@@ -1,5 +1,5 @@
 /**
- * Design tokens — style néo-brutaliste pour Patati.
+ * Design tokens — style néo-brutaliste pour Babbel'r.
  * Couleurs pétantes, ombres noires dures (pas de flou), bords épais, formes plates.
  */
 

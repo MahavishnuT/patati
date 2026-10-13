@@ -1,6 +1,6 @@
 {
   "common": {
-    "appName": "Patati",
+    "appName": "Babbel'r",
     "tagline": "Praat. Leer. Ontmoet.",
     "save": "Opslaan",
     "cancel": "Annuleren",
@@ -34,7 +34,7 @@
     "checkEmail": "Controleer je mailbox om je account te bevestigen."
   },
   "onboarding": {
-    "welcomeTitle": "Welkom bij Patati",
+    "welcomeTitle": "Welkom bij Babbel'r",
     "welcomeSubtitle": "De app waarmee je mensen ontmoet over een koffie om talen te oefenen in Brussel.",
     "getStarted": "Aan de slag",
     "nameLabel": "Je voornaam",

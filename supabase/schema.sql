@@ -1,5 +1,5 @@
 -- ============================================================================
--- Patati — schéma Supabase
+-- Babbel'r — schéma Supabase
 -- À exécuter une fois dans l'éditeur SQL de votre projet Supabase
 -- (Dashboard → SQL Editor → New query → coller ce fichier → Run).
 -- ============================================================================
